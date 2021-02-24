@@ -63,10 +63,81 @@ echo is_array($array) ? 'Array' : 'not an Array';
  * if string is less than offset character long, false will be returned.
  */
 // examples
-
-$data = substr("abcdef", -1);
-$data = substr("abcdef", -2);
-$data= substr("abcdef", -3,1); 
+$data = substr("abcdef", 0); // the number shows where to start extracting value from array.
+$data = substr("abcdef", -1);// -1 means that extracts value from other side
+$data = substr("abcdef", -3, 2); // first number means starting position, second end point number.
+$data = substr("abcdef", 1, 5);
 ECHO "<br>";
 echo $data;
+
+/**
+ * in_array - checks if a value exist in an array 
+ * 
+ * in_array ( mixed $needle , array $haystack , bool $strict = false ) : bool
+ * Searches for needle in haystack using loose comparison unless strict is set.
+ * 
+ * Parameters 
+ *  needle searched value. 
+ *      Note: If needle is a string, the comparison is done in a case-sensitive manner.
+ *  haystack the array
+ * 
+ *  strict - if the third parameter strict is set to true then the in_array() function will also check the types of the needle in the haystack
+ * 
+ * Return Values 
+ *  Returns true if needle is found in the array, false otherwise.
+ */
+echo "\n";
+echo "new line for function in_array()";
+echo "\n";
+ $time =  array('week', 'day', 'tomorrow'); 
+    if(in_array("tomorrow", $time)){
+        echo "it means tomorrow\n";
+    } 
+    if(in_array("week", $time)){
+        echo " it means today\n";
+    }
+    
+    $a = array('1.10', 12.4, 1.13);
+
+    if (in_array('12.4', $a, true)) {
+        echo "'12.4' found with strict check\n";
+    } else {
+        echo "SHIT HAPPENS\n";
+    }
+
+    if (in_array(1.13, $a, true)) {
+        echo "1.13 found with strict check\n";
+    }
+
+     // this is interesting. Example from PHP documentation.
+     $array = array(
+        'egg' => true,
+        'cheese' => false,
+        'hair' => 765,
+        'goblins' => null,
+        'ogres' => 'no ogres allowed in this array'
+    );
+    
+        // Loose checking -- return values are in comments
+        
+        // First three make sense, last four do not
+        echo '\n';
+        if (in_array("blabla", $array, true)){ 
+            echo " Random ";
+        } else{
+                echo "done";
+            }// true 
+        in_array(false, $array); // true
+        in_array(765, $array); // true
+        in_array(763, $array); // true
+        in_array('egg', $array); // true
+        in_array('hhh', $array); // true
+        in_array(array(), $array); // true
+
+        
+
+
+
+
+
 ?>
