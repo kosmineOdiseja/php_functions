@@ -122,10 +122,10 @@ echo "\n";
         
         // First three make sense, last four do not
         echo '\n';
-        if (in_array("blabla", $array, true)){ 
-            echo " Random ";
+        if (in_array("blabla", $array, true)){ // without true runs part "done". 
+            echo " Random \n";
         } else{
-                echo "done";
+                echo "done \n";
             }// true 
         in_array(false, $array); // true
         in_array(765, $array); // true
@@ -134,10 +134,211 @@ echo "\n";
         in_array('hhh', $array); // true
         in_array(array(), $array); // true
 
-        
+    /**
+     * explode() - Split an array of strigs,
+     *  each of which is a substrgin of string formed by spitting it on boundaries formed by th string separator.
+     * 
+     * PARAMETERS  
+     *  Separator - the boundary string.
+     *  string - the input string.
+     *  limit - if limit is set and positive, the returned array will contai a maximum of limit elements with the last element containing the rest of string. 
+     *  if the limit parameter is negative, all component except the last -limit are returned. 
+     *  if the limt parameter is zero, then this is treated as 1.
+     * NOTE Prior to PHP 8.0 implode() accepted its paremeters in eith order. explode() has never supported this: 
+     *  you must ensure that the separator argument comes before the strign argument.
+     * 
+     * RETURN VALUES - Returns an array of strings created by splitting the string parameter on boundaries formed by the separator. 
+     * 
+     * if separator is an empty string(""), explode  will return false. If separator contains a value that is not contained in string and a negative limit is used, 
+     * an empty array will be returned,  otherwise an array containing string will be returned. 
+     */
 
+    $data = "foo:*:1023:1000::/home/foo:/bin/sh";
+    list($user, $pass, $uid, $gid, $gecos, $home, $shell) = explode(":", $data);
+    echo $user ."\n"; // foo
+    echo $pass ."\n"; // *
 
+    $_functions  = "is-array, in_array, explode, substr";
+    $newStr = explode(", ", $_functions, -1);
 
+    /**
+     * str_replace - Replace all occurrences of the search strig with the replacement string 
+     * 
+     * DESCRIPTION 
+     * str_replace ( array|string $search , array|string $replace , string|array $subject , int &$count = null ) : string|arry
+     * 
+     * This function returns a string or an array with all occurrences of search in subject replaced with the given replace value. 
+     * if you don't need fancy replacing rules (like regular expression), you should use this function instead of preg_replace().
+     * 
+     * PARAMETERS 
+     *  If seach and replace are arrays, then str_replace(), then an empty strin is used for the rest of replacement values. If search is an array and raplace
+     * is a strin, the ths replacement string is used for every value of seach. The converse would not make sence, though. 
+     * 
+     * if search or replace are arrays, their elements are processed first to last. 
+     * 
+     * SEARCH The value being searched for, otherwise known as the needle. An array may be used to disignate multiple needles. 
+     * 
+     * REPLACE The replacement value that replces found search values. An array may be used to disignate muyltiple replacements. 
+     * 
+     * SUBJECT The string or array being searched and replaced on, otherwise know as the haystack. 
+     *  If subject is an array, then the search and replace is performed with every entry of subject, and the return value is an array as well. 
+     * 
+     * COUNT If passed, this will be set to the number of replacements performed. 
+     * 
+     * RETURN VALUES
+     *      this function returns a string or an array with the replaced values. 
+     */
 
+     // Provides: <body text='black'>
+    $bodytag = str_replace("%body%", "black", "<body text='%body%'>");
 
-?>
+    // Provides: Hll Wrld f PHP
+    $vowels = array("a", "e", "i", "o", "u", "A", "E", "I", "O", "U");
+    $onlyconsonants = str_replace($vowels, "", "Hello World of PHP");
+    echo $onlyconsonants;
+    echo "<br>";
+
+    // Provides: You should eat pizza, beer, and ice cream every day
+    $phrase  = "You should eat fruits, vegetables, and fiber every day.";
+    $healthy = array("fruits", "vegetables", "fiber");
+    $yummy   = array("pizza", "beer", "ice cream");
+
+    $newphrase = str_replace($healthy, $yummy, $phrase);
+
+    // Provides: 2
+    $str = str_replace("ll", "", "good golly miss molly!", $count); // $count shows how many times changes made. 
+    echo $count."\n";
+    
+        // Order of replacement
+    $str     = "Line 1\nLine 2\rLine 3\r\nLine 4\n";
+    $order   = array("\r\n", "\n", "\r");
+    $replace = '<br />';
+    echo print_r($replace) ."\n";
+
+/**
+ * implode - join array elements with a string 
+ * 
+ * DESCRIPTION 
+ * implode ( string $separator , array $array ) : string
+ * 
+ * Alternative signature (not supported with named arguments):
+ * implode ( array $array ) : string
+ * 
+ * Legacy signature (deprecated as of PHP 7.4.0, removed as of PHP 8.0.0):
+ * implode ( array $array , string $separator ) : string
+ * 
+ * PARAMETERS
+ *  separator
+ *  Defaults to an empty string
+ * 
+ *  array
+ *  The array of string to implode.
+ * 
+ * RETURN VALUES
+ *  Return a string containing a string representation of all the array elements in the same order, with the separator string between each element.
+ * 
+ */
+
+$array = array('lastname', 'email', 'phone');
+$comma_separated = implode(",", $array);
+
+echo $comma_separated; // lastname,email,phone
+
+// Empty string when using an empty array:
+var_dump(implode('hello', array())); // string(0)
+
+/**
+ * array_merge() - array_merge one or more arrays
+ * 
+ * DESCRIPTION 
+ * array_merge ( array ...$arrays ) : array
+ *  
+ * Merges the elements of one or more arrays together so that the values of one are appended to the end of the previous one.
+ * It returns the resulting array. 
+ * 
+ * If the input arrays have the same4 string keys, then the later value for that key will overwrite the previous one. 
+ * If, however, the arrays contain numeric keys, the later value will not overwrite the original value, but will be appended. 
+ * 
+ * Values, in the input arrays iwth numeric keys will be renumbered with incrementing keys starting from zero in the result array.
+ * 
+ * PARAMETERS   
+ *  arrays 
+ *      variables list of arrays to merge
+ *  return values
+ *      returns the resultin array. If called withoud any arguments, return an empty array.
+ * 
+ */
+    $array1 = array("color" => "red", 2, 4);
+    $array2 = array("a", "b", "color" => "green", "shape" => "trapezoid", 4);
+    $result = array_merge($array1, $array2);
+    print_r($result)."\n";
+
+/**
+ * If you want to append array elements from the second array to the first array while not overwriting 
+ * the elements from the first array and not re-indexing, use the + array union operator:
+ */
+    $array1 = array(0 => 'zero_a', 2 => 'two_a', 3 => 'three_a');
+    $array2 = array(1 => 'one_b', 3 => 'three_b', 4 => 'four_b');
+    $result = $array1 + $array2;
+    var_dump($result)."\n";
+
+/**
+ * The keys from the first array will be preserved. If an array key exists in both arrays, 
+ * then the element from the first array will be used and the matching key's
+ *  element from the second array will be ignored.
+ */
+
+   // one more trick how to merge strings
+    $beginning = 'foo';
+    $end = array(1 => 'bar');
+    $result = array_merge((array)$beginning, (array)$end);
+    print_r($result);
+/**
+ * strpos() -  Find the position of the first occurrence of a substring in a string
+ * 
+ * DESCRIPTION 
+ *  strpos ( string $haystack , string $needle , int $offset = 0 ) : int|false
+ * 
+ * PARAMETERS 
+ *  haystack   
+ *      the string to search in. 
+ *  needle 
+ *      Prior to PHP 8.0.0, if needle is not a string, it is converted to an integer and applied as the ordinal value of a character. 
+ *      This behavior is deprecated as of PHP 7.3.0, and relying on it is highly discouraged. Depending on the intended behavior, 
+ *      the needle should either be explicitly cast to string, or an explicit call to chr() should be performed.
+ *  offset 
+ *      If specified, search will start this number of characters counted from the beginning of the string. If the offset is negative, 
+ *      the search will start this number of characters counted from the end of the string.
+ *  Return Values
+ *      Returns the position of where the needle exists relative to the beginning of the haystack string (independent of offset).
+ *      Also note that string positions start at 0, and not 1.
+ *      Returns false if the needle was not found.
+ */
+    // Using ===
+    $mystring = 'abc';
+    $findme   = 'a';
+    $pos = strpos($mystring, $findme);
+
+    // Note our use of ===.  Simply == would not work as expected
+    // because the position of 'a' was the 0th (first) character.
+    if ($pos === false) {
+        echo "The string '$findme' was not found in the string '$mystring'";
+    } else {
+        echo "The string '$findme' was found in the string '$mystring'";
+        echo " and exists at position $pos";
+    }
+
+    // Using !==
+    $mystring = 'abc';
+    $findme   = 'a';
+    $pos = strpos($mystring, $findme);
+
+    // The !== operator can also be used.  Using != would not work as expected
+    // because the position of 'a' is 0. The statement (0 != false) evaluates
+    // to false.
+    if ($pos !== false) {
+        echo "The string '$findme' was found in the string '$mystring'";
+            echo " and exists at position $pos";
+    } else {
+        echo "The string '$findme' was not found in the string '$mystring'";
+    }
