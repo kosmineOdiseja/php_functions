@@ -467,5 +467,20 @@ var_dump($clean);
  * Description
  *  file_exists ( string $filename ) : bool
  * Parameters 
+ *  file name - Path to the file or directory. 
+ *  On windows, use //computername/share/filename or \\computername\share\filename to check files on network shares.
+ * 
+ * Return Values 
+ *  Returns true if the file or directory specified by filename exists; false otherwise.
+ *  Note - this fucntion is done using the real UID/GID instead of the effective one. 
+ *  Note - Because PHP's integer type is signed and many platforms use 32bit integers, some filesystem functions may return unexpected
+ *  result for files which are larger than 2GB.
  */
+    $filename = '/path/to/foo.txt';
+
+    if (file_exists($filename)) {
+        echo "The file $filename exists";
+    } else {
+        echo "The file $filename does not exist";
+    }
 ?>
