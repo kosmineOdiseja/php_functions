@@ -347,4 +347,125 @@ var_dump(implode('hello', array())); // string(0)
          echo "The string '$findme' was not found in the string '$mystring'";
     }
 }
+/**
+ * preg_match — Perform a regular expression match
+ * 
+ * DESCRIPTION  
+ *  preg_match ( string $pattern , string $subject , array &$matches = null , int $flags = 0 , int $offset = 0 ) : int|false
+ * 
+ * searches subject for a match to the regular expresion given in pattern
+ * 
+ * PARAMETERS 
+ *  pattern - the pattern to search for, as a string. 
+ *  subject - the input string. 
+ *  matches - if mateches is provided, then it is filled with the result of search. $matches[0], will contain the text that matched
+ *  the full pattern, $matches[1] will have the text that matched the first captured parenthesized subpattern, and so on. 
+ *  flags - can be a combination of the following flags: 
+ *      PREG_OFFSET_CAPTURE - if this flag is passed, for every occurring match the appendant string offset (in bytes) will also be returned. 
+ *      Note that this changes the value of matches into an array where every element is an array consinting of the matched string at offset 0 
+ *      and its string offset into subject at offset 1.
+ *      PREG_UNMATCHED_AS_NULL - If this flag is passed, unmatched subpatterns are reported as null;
+ *      otherwise they are reported as an empty string.
+ */
+
+preg_match('/(foo)(bar)(baz)/', 'foobarbaz', $matches, PREG_OFFSET_CAPTURE);
+print_r($matches);
+
+// The "i" after the pattern delimiter indicates a case-insensitive search
+if (preg_match("/php/i", "PHP is the web scripting language of choice.")) {
+    echo "A match was found.";
+} else {
+    echo "A match was not found.";
+}
+/**
+ * sprintf() - Return a formated string.
+ *  
+ * DESCRIPTION 
+ *  sprintf ( string $format , mixed ...$values ) : string
+ *  Returns a string produced according to the formatting string format.
+ *  PARAMETERS 
+ *      format - The format string is composed of zero or more directives: ordinary characters (excluding %)
+ *      that are copied directly to the result and conversion specifications, 
+ *      each of which results in fetching its own parameter.
+ * 
+ *      A conversion specification follows this prototype: %[argnum$][flags][width][.precision]specifier.
+ * 
+ *   RETURN VALUES - Returns a string produced according to the formatting string format.
+ *       
+ */
+        $num = 5;
+        $location = 'tree';
+
+        $format = 'There are %d monkeys in the %s';
+        echo sprintf($format, $num, $location);
+/**
+ *  trim() — Strip whitespace (or other characters) from the beginning and end of a string
+ *  
+ *  DESCRIPTION
+ *      trim ( string $string , string $characters = " \n\r\t\v\0" ) : string
+ *      This function returns a string with whitespace stripped from the beginning and end of string.
+ *      Without the second parameter, trim() will strip these characters:
+ *          " " (ASCII 32 (0x20)), an ordinary space.
+ *          "\t" (ASCII 9 (0x09)), a tab.
+ *          "\n" (ASCII 10 (0x0A)), a new line (line feed).
+ *          "\r" (ASCII 13 (0x0D)), a carriage return.
+ *          "\0" (ASCII 0 (0x00)), the NUL-byte.
+ *          "\v" (ASCII 11 (0x0B)), a vertical tab.   
+ * 
+ *  Parameters 
+ *      String - the string that will  be trimmed.
+ *      characters - Optionally, the stripped characters can also be specified using the characters parameter. 
+ *      Simply list all characters that you want to be striipped. With .. you can specify a range of characters.
+ * 
+ *  Return values - The trimmed string 
+ */ 
+
+$text   = "\t\tThese are a few words :) ...  ";
+$binary = "\x09Example string\x0A";
+$hello  = "Hello World";
+var_dump($text, $binary, $hello);
+
+print "\n";
+
+$trimmed = trim($text);
+var_dump($trimmed);
+
+$trimmed = trim($text, " \t.");
+var_dump($trimmed);
+
+$trimmed = trim($hello, "Hdle");
+var_dump($trimmed);
+
+$trimmed = trim($hello, 'HdWr');
+var_dump($trimmed);
+
+// trim the ASCII control characters at the beginning and end of $binary
+// (from 0 to 31 inclusive)
+$clean = trim($binary, "\x00..\x1F");
+var_dump($clean);
+    
+/**
+ * strtolower() — Make a string lowercase
+ * 
+ * Description 
+ *   strtolower ( string $string ) : string
+ * 
+ *   Returns string with all alphabetic characters converted to lowercase.
+ *      Note that 'alphabetic' is determined by the current locale. 
+ *      This means that e.g. in the default "C" locale, characters such as umlaut-A (Ä) will not be converted.
+ *  Parameters 
+ *      String - the imput strig
+ *  Return Values - Returns the lowercased string 
+ */
+
+    $str = "Mary Had A Little Lamb and She LOVED It So";
+    $str = strtolower($str);
+    echo $str; // Prints mary had a little lamb and she loved it so
+/**
+ * file_exists() — Checks whether a file or directory exists
+ * 
+ * Description
+ *  file_exists ( string $filename ) : bool
+ * Parameters 
+ */
 ?>
