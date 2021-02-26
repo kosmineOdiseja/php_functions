@@ -122,17 +122,15 @@ echo "\n";
         
         // First three make sense, last four do not
         echo '\n';
-<<<<<<< HEAD
         if (in_array("blabla", $array, true)){ // without true runs part "done". 
             echo " Random \n";
         } else{
                 echo "done \n";
-=======
+
         if (in_array("blabla", $array, true)){ 
             echo " Random ";
         } else{
                 echo "done";
->>>>>>> 78c475459afabc77333e86c7e5425a114e9ca589
             }// true 
         in_array(false, $array); // true
         in_array(765, $array); // true
@@ -141,7 +139,6 @@ echo "\n";
         in_array('hhh', $array); // true
         in_array(array(), $array); // true
 
-<<<<<<< HEAD
     /**
      * explode() - Split an array of strigs,
      *  each of which is a substrgin of string formed by spitting it on boundaries formed by th string separator.
@@ -350,12 +347,3 @@ var_dump(implode('hello', array())); // string(0)
     } else {
         echo "The string '$findme' was not found in the string '$mystring'";
     }
-=======
-        
-
-
-
-
-
-?>
->>>>>>> 78c475459afabc77333e86c7e5425a114e9ca589
