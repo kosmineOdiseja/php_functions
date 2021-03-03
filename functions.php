@@ -483,4 +483,40 @@ var_dump($clean);
     } else {
         echo "The file $filename does not exist";
     }
+
+/** is_string 
+ *      find wheter the type of a variable is string.
+ * Description 
+ *      is_string ( mixed $value ) : bool
+ *      Finds whether the type of the given variable is string.
+ * 
+ * PARAMETERS
+ *  value - the variable beign evalueted. 
+ *  Return Values - Returns true if value is of type string, false otherwise. 
+ */
+    echo '\n';
+$values = array(false, true, null, 'abc', '23', 23, '23.5', 23.5, '', ' ', '0', 0);
+foreach ($values as $value) {
+    echo "is_string(";
+    var_export($value);
+    echo ") = ";
+    echo var_dump(is_string($value));
+}
+/** other similiar functions 
+    *is_float() - Finds whether the type of a variable is float
+    *is_int() - Find whether the type of a variable is integer
+    *is_bool() - Finds out whether a variable is a boolean
+    *is_object() - Finds whether a variable is an object
+    *is_array() - Finds whether a variable is an array
+ */
+
+ class B {
+     public function __toString(){
+         return "Instance of B() can be treated as a String! \n";
+        }
+ }
+ $b = new B();
+ print($b); // Instances of B() can be treated as a strings! 
+ print(is_string($b) ? 'true' : 'false' ); 
+
 ?>
