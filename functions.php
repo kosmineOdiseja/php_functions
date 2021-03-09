@@ -645,7 +645,7 @@ foreach ($values as $value) {
      */
 
     $homepage = file_get_contents('http://www.example.com/');
-    echo $homepage;
+    //  echo $homepage; // klaus
 
     // If strict types are enabled i.e. declare(strict_types=1);
     $file = file_get_contents('./people.txt', true);
@@ -653,6 +653,61 @@ foreach ($values as $value) {
     $file = file_get_contents('./people.txt', FILE_USE_INCLUDE_PATH);
 
     // Read 14 characters starting from the 21st character
-$section = file_get_contents('./people.txt', FALSE, NULL, 20, 14);
-var_dump($section);
+    $section = file_get_contents('./people.txt', FALSE, NULL, 20, 14);
+    var_dump($section);
+
+    /**
+     * array_key_exists - checks if the given key or index in the array
+     * 
+     * Description 
+     * array_key_exists ( string|int $key , array $array ) : bool
+     * 
+     * array_key_exists() returns true if the given key is set in the array.
+     * key can be any value possible for an array index.
+     * 
+     * Parameters 
+     *  key - Value to check
+     *  array - An array with keys to check
+     * 
+     * Return Values
+     *   Returns true on success or false on failure.
+     * Note: 
+     *  array_key_exists() will search for the keys in the first dimension only.
+     *  Nested keys in multidimensional arrays will not be found.
+     */
+    $search_array = array('first' => 1, 'second' => 4);
+    if (array_key_exists('first', $search_array)) {
+        echo "The 'first' element is in the array";
+    } // dar galima naudoti isset() bet array_key_exists() kad return true
+
+    /**
+     * array_keys - Return all the keys or a subset of the keys of an array.
+     * 
+     * Description 
+     * array_keys ( array $array ) : array
+     * 
+     * array_keys ( array $array , mixed $search_value , bool $strict = false ) : array
+     * 
+     * If a search_value is specified, then only the keys for that value are returned. 
+     * Otherwise, all the keys from the array are returned.
+     * 
+     * Parameters
+     *  array - an array containin keys to return. 
+     *  search Value - If specified, then only keys containin these values are returned. 
+     *  strict - determines if strict comparison(===) should be used durin the search.
+     * 
+     * Return Values 
+     *  Returns an array of all the keys in array.
+     * 
+     */
+    $array = array(0 => 100, "color" => "red");
+    print_r(array_keys($array));
+
+    $array = array("blue", "red", "green", "blue", "blue");
+    print_r(array_keys($array, "blue"));
+
+    $array = array("color" => array("blue", "red", "green"),
+                "size"  => array("small", "medium", "large"));
+    print_r(array_keys($array));
+
 ?>
