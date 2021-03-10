@@ -710,4 +710,73 @@ foreach ($values as $value) {
                 "size"  => array("small", "medium", "large"));
     print_r(array_keys($array));
 
+    /**
+     * dirname - Returns a parent directory's path
+     * dirname ( string $path , int $levels = 1 ) : string
+     * 
+     * Given a string containing the path of a file or directory,
+     * this function will return the parent directory's path that is levels up from the current directory.
+     * Note 
+     *  dirname() operates naively on the input string, 
+     *  and is not aware of the actual filesystem, or path components such as "..".
+     * 
+     * CAUTION
+     *  Caution
+     *   On Windows, dirname() assumes the currently set codepage, so for it to see the correct directory 
+     *   name with multibyte character paths, the matching codepage must be set. If path contains characters
+     *   which are invalid for the current codepage, the behavior of basename() is undefined.
+     *  On other systems, dirname() assumes path to be encoded in an ASCII compatible encoding.
+     *  Otherwise the behavior of the the function is undefined.
+     * 
+     * Parameters
+     *  A Path 
+     *  On Windows, both slash (/) and backslash (\) 
+     *  are used as directory separator character. In other environments, it is the forward slash (/).
+     * 
+     * Levels
+     * The number of parent directories to go up.
+     * This must be an integer greater than 0.
+     * 
+     * Return values
+     * Returns the path of a parent directory. If there are no slashes in path, a dot ('.')
+     *  is returned, indicating the current directory. Otherwise, the returned string is path with any trailing /component removed.
+     * 
+     *  
+     */
+    echo dirname("/etc/passwd") . PHP_EOL;
+    echo dirname("/etc/") . PHP_EOL;
+    echo dirname(".") . PHP_EOL;
+    echo dirname("C:\\") . PHP_EOL;
+    echo dirname("/usr/local/lib", 2);
+
+    /**
+     * function_exists - Return true if the given function has been defined
+     * function_exists ( string $function_name ) : bool
+     * Checks the list of defined functions, both built-in (internal) and user-defined, for function_name.
+     * 
+     * Parameters
+     * function_name
+     *  The function name, as a string
+     * 
+     * Return Values
+     * Returns true if function_name exists and is a function, false otherwise.
+     * 
+     * NOTE 
+     * This function will return false for constructs, such as include_once and echo.
+     */
+    function countToTen(){ // this will work 
+        echo "random text";
+    }
+
+    // and with functions which are build in php will not work
+
+    if (function_exists('countToTen')) {
+        echo "IMAP functions are available.<br />\n";
+    } else {
+        echo "IMAP functions are not available.<br />\n";
+    }
+    
+
+
+
 ?>
