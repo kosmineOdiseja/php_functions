@@ -776,7 +776,55 @@ foreach ($values as $value) {
         echo "IMAP functions are not available.<br />\n";
     }
     
+    /**
+     * array_map applies the callback to the elements of the given arrays
+     * 
+     * array_map ( callable|null $callback , array $array , array ...$arrays ) : array 
+     * 
+     * array_map() returns an array containing the results of applying the callback to 
+     * the corresponding index of array (and arrays if more arrays are provided) used as 
+     * arguments for the callback. The number of parameters that the callback function
+     *  accepts should match the number of arrays passed to array_map().
+     * 
+     * Parametrus 
+     *  callback - a callable to run each element in each array.
+     *  Null can be passed as a value to callback to perform a zip operation on multipel array. If only array
+     *  provided, array_map() will return the input array.
+     *  array - an array to run through the call back function.
+     *  arrays - supplementary variable lost of array arguments to run through the callback functions.
+     * 
+     * Return Values 
+     *  Returns an array containing the results of applying the callback function to 
+     *  the corresponding index of array (and arrays if more arrays are provided) used
+     *  as arguments for the callback.
+     * The returned array will preserve the keys of the array argument if and only 
+     * if exactly one array is passed. If more than one array is passed, the returned array will have sequential integer keys.
+     */
+function cube($n){
+        return ($n * $n * $n);
+    }
 
+    $a = [1, 2, 3, 4, 5];
+    $b = array_map('cube', $a);
+    print_r($b);
+    
+    // 1 more example
 
+    function show_Spanish($n, $m){
+        return "The number {$n} is called {$m} in Spanish";
+    }
+
+    function map_Spanish($n, $m){
+        return [$n => $m];
+    }
+
+    $a = [1, 2, 3, 4, 5];
+    $b = ['uno', 'dos', 'tres', 'cuatro', 'cinco'];
+
+    $c = array_map('show_Spanish', $a, $b);
+    print_r($c);
+
+    $d = array_map('map_Spanish', $a , $b);
+    print_r($d);
 
 ?>
