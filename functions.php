@@ -827,4 +827,89 @@ function cube($n){
     $d = array_map('map_Spanish', $a , $b);
     print_r($d);
 
+    /**
+     * get_class — Returns the name of the class of an object
+     * get_class ( object $object = ? ) : string
+     * Gets the name of the class of the given object.
+     * 
+     * Parameters 
+     * object - The tested object. This parameter may be omitted when inside a class.
+     * Note: Explicitly passing null as the object is no longer allowed as of PHP 7.2.0.
+     * The parameter is still optional and calling get_class() without a parameter from 
+     * inside a class will work, but passing null now emits an E_WARNING notice.
+     * 
+     * Return Values 
+     * Returns the name of the class of which object is an instance. Returns false if object is not an object.
+     * If object is omitted when inside a class, the name of that class is returned.
+     * If the object is an instance of a class which exists in a namespace, the qualified namespaced name of that class is returned.
+     * 
+     * Errors/Exceptions
+     * If get_class() is called with anything other than an object, an E_WARNING level error is raised.
+     * 
+     */
+    class foo {
+        function name()
+        {
+            echo "My name is " , get_class($this) , "\n";
+        }
+    }
+    
+    // create an object
+    $bar = new foo();
+    
+    // external call
+    echo "Its name is " , get_class($bar) , "\n";
+    
+    // internal call
+    $bar->name();
+
+    //other way 
+        
+    abstract class bar {
+        public function __construct()
+        {
+            var_dump(get_class($this));
+            var_dump(get_class());
+        }
+    }
+
+    class newfoo extends bar {
+    }
+
+    new newfoo;
+
+    /**
+     * class_exists — Checks if the class has been defined
+     * 
+     * class_exists ( string $class_name , bool $autoload = true ) : bool
+     * 
+     * Parameters 
+     * 
+     * Class_name - The class name. The name is matched in a case-insensitive manner.
+     *  autoloader - Whether or not to call __autoload by default.
+     * 
+     * Return values 
+     * Returns true if class_name is a defined class, false otherwise.
+     */
+    // Check that the class exists before trying to use it
+    if (class_exists('MyClass')) {
+        $myclass = new MyClass();
+    }
+
+    //---------------------
+
+        function __autoload($class){
+        include($class . '.php');
+
+        // Check to see whether the include declared the class
+        if (!class_exists($class, false)) {
+            trigger_error("Unable to load class: $class", E_USER_WARNING);
+        }
+    }
+
+    if (class_exists('MyClass')) {
+        $myclass = new MyClass();
+    }
+
+
 ?>
