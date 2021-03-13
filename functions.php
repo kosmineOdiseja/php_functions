@@ -911,5 +911,69 @@ function cube($n){
         $myclass = new MyClass();
     }
 
+    /**
+     * is_object — Finds whether a variable is an object
+     * 
+     * is_object ( mixed $value ) : bool
+     * 
+     * Parameters 
+     * Value - the variable being evalueted.
+     * 
+     * Return Values - returns true if value is an object, false otherwise. 
+     */
 
+    // Declare a simple function to return an 
+    // array from our object 
+
+    function get_students($obj)
+    {
+        if (!is_object($obj)) {
+            return false;
+        }
+
+        return $obj->students;
+    }
+
+    // Declare a new class instance and fill up 
+    // some values
+    $obj = new stdClass();
+    $obj->students = array('Kalle', 'Ross', 'Felipe');
+
+    var_dump(get_students(null));
+    var_dump(get_students($obj));
+
+    /**
+     * time - return current Unix timestamp
+     * time(): int 
+     * 
+     * Returns the current time measured in the number of seconds since the Unix Epoch (January 1 1970 00:00:00 GMT).
+     */
+    $nextWeek = time() + (7 * 24 * 60 * 60);
+                   // 7 days; 24 hours; 60 mins; 60 secs
+    echo 'Now:       '. date('Y-m-d') ."\n";
+    echo 'Next Week: '. date('Y-m-d', $nextWeek) ."\n";
+    // or using strtotime():
+    echo 'Next Week: '. date('Y-m-d', strtotime('+1 week')) ."\n";
+
+    /**
+     * json_encode - Returns the JSON representation of a value;
+     * json_encode ( mixed $value , int $flags = 0 , int $depth = 512 ) : string|false
+     * 
+     * Returns a string containing the JSON representation of the supplied value.
+     * The encoding is affected by the supplied flags and additionally the encoding of float values depends on the value of serialize_precision.
+     * 
+     * Parameters 
+     * value - The value being encoded. Can be any type except a resource.
+     * All string data must be UTF-8 encoded.
+     * Flags - Bitmask consisting of JSON_FORCE_OBJECT, JSON_HEX_QUOT, JSON_HEX_TAG, JSON_HEX_AMP, 
+     *  JSON_HEX_APOS, JSON_INVALID_UTF8_IGNORE, JSON_INVALID_UTF8_SUBSTITUTE, JSON_NUMERIC_CHECK, 
+     *  JSON_PARTIAL_OUTPUT_ON_ERROR, JSON_PRESERVE_ZERO_FRACTION, JSON_PRETTY_PRINT, JSON_UNESCAPED_LINE_TERMINATORS, 
+     *  JSON_UNESCAPED_SLASHES, JSON_UNESCAPED_UNICODE, JSON_THROW_ON_ERROR.
+     *  The behaviour of these constants is described on the JSON constants page.
+     * Return Values - retusn a JSON encoded string on seccess or false on failure.
+     * 
+     */
+    $arr = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
+
+    echo json_encode($arr);
 ?>
